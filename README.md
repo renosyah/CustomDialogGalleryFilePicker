@@ -1,4 +1,4 @@
-# Custom Dialog Gallery File Picker AAR module
+# Custom Dialog Gallery File Picker
 
 hanya sebuah contoh sederhana membuat alert dialog yang menampilkan gambar dari gallery
 berikut adalah preview cara instalasi : 
@@ -21,26 +21,24 @@ berikut adalah preview cara instalasi :
 ## Instalasi
 
 
-* modul yang tersedia dan siap di import adalah :
+* tambahakan kedalam build.gradle : 
 ```
 
- 	customgalleryfilepicker.aar
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
 
 ```
 
-* dalam project android anda : 
+
+* tambahakan kedalam app.gradle : 
 ```
 
-	pilih file -> new -> new module -> import AAR
-
-```
-
-
-* tambahakan kedalam Gradle.app : 
-```
-
-	implementation project(path: ':customgalleryfilepicker')
-
+	implementation 'com.github.renosyah:CustomDialogGalleryFilePicker:v1.2'
+	
 ```
 
 * untuk penggunaan berikut adalah contohnya : 
