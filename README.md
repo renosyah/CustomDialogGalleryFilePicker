@@ -1,7 +1,6 @@
 # Custom Dialog Gallery File Picker
 
-hanya sebuah contoh sederhana membuat alert dialog yang menampilkan gambar dari gallery
-berikut adalah preview cara instalasi : 
+hanya sebuah contoh sederhana mempublikasikan android library ke jitpack yang menampilkan gambar dari gallery dan berikut adalah preview dan instalasi : 
 
 ## Preview 
 
@@ -63,7 +62,7 @@ CustomDialogGalleryFilePicker dialog = CustomDialogGalleryFilePicker(this);
 
 ```
 
-int CustomColor = ResourcesCompat.getColor(context.resources, R.color.colorPrimaryDark,null);
+int CustomColor = ResourcesCompat.getColor(this.getResources(), R.color.colorPrimaryDark,null);
 dialog.SetTheme(CustomColor);
 dialog.ShowDialog();
 
