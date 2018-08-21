@@ -20,7 +20,7 @@ hanya sebuah contoh sederhana mempublikasikan android library ke jitpack yang me
 ## Instalasi
 
 
-* tambahakan kedalam build.gradle : 
+* tambahkan kedalam build.gradle : 
 ```
 
 	allprojects {
@@ -33,7 +33,7 @@ hanya sebuah contoh sederhana mempublikasikan android library ke jitpack yang me
 ```
 
 
-* tambahakan kedalam app.gradle : 
+* tambahkan kedalam app.gradle : 
 ```
 
 	implementation 'com.github.renosyah:CustomDialogGalleryFilePicker:v1.2'
