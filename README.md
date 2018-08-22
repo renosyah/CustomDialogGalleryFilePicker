@@ -4,9 +4,17 @@ hanya sebuah contoh sederhana mempublikasikan android library ke jitpack yang me
 
 ## Preview 
 
-* Tampilan Daftar Gambar dari galery
 
-![GitHub Logo](/image/3.png)
+* Tampilan Dialog untuk Daftar Gambar dari galery
+
+![GitHub Logo](/image/1.png)
+
+
+
+
+* Tampilan Activity untuk Daftar Gambar dari galery
+
+![GitHub Logo](/image/5.png)
 
 
 
@@ -14,7 +22,7 @@ hanya sebuah contoh sederhana mempublikasikan android library ke jitpack yang me
 
 * Tampilan Setelah memilih gambar
 
-![GitHub Logo](/image/4.png)
+![GitHub Logo](/image/6.png)
 
 
 ## Instalasi
@@ -83,7 +91,18 @@ CustomDialogGalleryFilePicker dialog = CustomDialogGalleryFilePicker(this);
 
 	int CustomColor = ResourcesCompat.getColor(this.getResources(), R.color.colorPrimaryDark,null);
 	dialog.SetTheme(CustomColor);
-	dialog.ShowDialog();
+	dialog.ShowPickupActivity();
+
+
+```
+
+
+* dialog atau activity dapat dipilih sesuai kebutuhan : 
+```
+
+	dialog.ShowDialog(); // untuk dialog namun hanya mengakses gambar
+
+	dialog.ShowPickupActivity();  // untuk activity dapat mengakses gambar,musik,video dan lainya
 
 
 ```
