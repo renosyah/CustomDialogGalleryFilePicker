@@ -71,15 +71,15 @@ public class DialogRes {
 
         String[] columns = {"*"};
 
-        String orderBy = MediaStore.Files.FileColumns.DATE_ADDED+" DESC";
-        String select =  MediaStore.Files.FileColumns.MEDIA_TYPE + "="
-                + MediaStore.Files.FileColumns.MEDIA_TYPE_NONE;
+        String orderBy = MediaStore.Images.ImageColumns.DATE_TAKEN + " DESC";
 
-        Cursor phones = context.getContentResolver().query(MediaStore.Files.getContentUri("external"), columns, select, null, orderBy);
+        Cursor phones = context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, columns, null, null, orderBy);
         assert phones != null;
         while (phones.moveToNext()) {
-            Uri path = Uri.parse(phones.getString(phones.getColumnIndex(MediaStore.Files.FileColumns.DATA)));
-            datas.add(new GalleryFileObj(new File(path.getPath()).getName(), path.getPath()));
+            Uri path = Uri.parse(phones.getString(phones.getColumnIndex(MediaStore.Images.Media.DATA)));
+
+            datas.add(new GalleryFileObj(new File("" + path.getPath()).getName(), path.getPath()));
+
         }
         phones.close();
 
