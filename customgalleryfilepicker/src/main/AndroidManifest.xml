@@ -1,2 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.renosyahputra.customgalleryfilepicker" />
+    package="com.example.renosyahputra.customgalleryfilepicker">
+
+    <application>
+        <activity
+            android:name=".CustomActivityGalleryFilePicker"
+            android:label="@string/title_activity_custom_gallery_file_picker"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+    </application>
+
+</manifest>

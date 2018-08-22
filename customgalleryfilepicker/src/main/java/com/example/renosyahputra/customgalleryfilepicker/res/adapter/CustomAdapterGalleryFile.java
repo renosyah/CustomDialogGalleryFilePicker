@@ -2,8 +2,10 @@ package com.example.renosyahputra.customgalleryfilepicker.res.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.res.ResourcesCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,14 +58,56 @@ public class CustomAdapterGalleryFile extends ArrayAdapter<GalleryFileObj> {
         GalleryFileObj item = getItem(position);
 
         holder.name.setText(item.FileName);
-        if (color != 0) {
-            holder.name.setTextColor(color);
-        }
+//        if (color != 0) {
+//            holder.name.setTextColor(color);
+//        }
 
-        Picasso.get()
-                .load(new File(item.Path))
-                .resize(200,200)
-                .into(holder.image);
+        switch (item.GetFileExtension()) {
+            case GalleryFileObj.FormatJPG:
+            case GalleryFileObj.FormatPNG:
+                Picasso.get()
+                        .load(new File(item.Path))
+                        .placeholder(ResourcesCompat.getDrawable(context.getResources(), R.drawable.jpg_file, null))
+                        .resize(200, 200)
+                        .into(holder.image);
+
+                break;
+            case GalleryFileObj.FormatVIDEO_3GP:
+            case GalleryFileObj.FormatVIDEO_MP4:
+                holder.image.setImageDrawable(ResourcesCompat.getDrawable(context.getResources(), R.drawable.video_file, null));
+                if(color != 0) {
+                    holder.image.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+                }
+
+                break;
+            case GalleryFileObj.FormatMP3:
+                holder.image.setImageDrawable(ResourcesCompat.getDrawable(context.getResources(), R.drawable.music_file, null));
+                if(color != 0) {
+                    holder.image.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+                }
+                break;
+
+            case GalleryFileObj.FormatPDF:
+                holder.image.setImageDrawable(ResourcesCompat.getDrawable(context.getResources(), R.drawable.pdf_logo, null));
+                if(color != 0) {
+                    holder.image.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+                }
+                break;
+            case GalleryFileObj.FormatZIP:
+                holder.image.setImageDrawable(ResourcesCompat.getDrawable(context.getResources(), R.drawable.zip_icon, null));
+                if(color != 0) {
+                    holder.image.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+                }
+                break;
+
+                default:
+                    holder.image.setImageDrawable(ResourcesCompat.getDrawable(context.getResources(), R.drawable.unknown_file_type, null));
+                    if(color != 0) {
+                        holder.image.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+                    }
+
+                    break;
+        }
 
         return row;
     }

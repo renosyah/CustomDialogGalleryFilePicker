@@ -6,7 +6,7 @@ hanya sebuah contoh sederhana mempublikasikan android library ke jitpack yang me
 
 * Tampilan Daftar Gambar dari galery
 
-![GitHub Logo](/image/1.png)
+![GitHub Logo](/image/3.png)
 
 
 
@@ -14,13 +14,14 @@ hanya sebuah contoh sederhana mempublikasikan android library ke jitpack yang me
 
 * Tampilan Setelah memilih gambar
 
-![GitHub Logo](/image/2.png)
+![GitHub Logo](/image/4.png)
 
 
 ## Instalasi
 
 
 * tambahkan kedalam build.gradle : 
+
 ```
 
 	allprojects {
@@ -34,13 +35,19 @@ hanya sebuah contoh sederhana mempublikasikan android library ke jitpack yang me
 
 
 * tambahkan kedalam app.gradle : 
+
 ```
 
-	implementation 'com.github.renosyah:CustomDialogGalleryFilePicker:v1.2'
+	dependencies {
+		...
+		implementation 'com.github.renosyah:CustomDialogGalleryFilePicker:v1.5'
 	
+	}
+
 ```
 
 * untuk penggunaan berikut adalah contohnya : 
+
 ```
 
 CustomDialogGalleryFilePicker dialog = CustomDialogGalleryFilePicker(this);
@@ -53,18 +60,28 @@ CustomDialogGalleryFilePicker dialog = CustomDialogGalleryFilePicker(this);
             		}
         	});
 
+	dialog.ShowPickupActivity();
+
+```
+
+* pengaturan untuk bahasa indonesia/inggris dan jendela activity :
+
+```
+
+	dialog.SetFullScreenActivity(true);
+        dialog.SetIndonesian();
+
+
+```
+
+
+* dialog dan activity dapat di sesuaikan warnanya :
+
+```
+
+	int CustomColor = ResourcesCompat.getColor(this.getResources(), R.color.colorPrimaryDark,null);
+	dialog.SetTheme(CustomColor);
 	dialog.ShowDialog();
-
-```
-
-
-* dialog juga dapat di sesuaikan warnanya :
-
-```
-
-int CustomColor = ResourcesCompat.getColor(this.getResources(), R.color.colorPrimaryDark,null);
-dialog.SetTheme(CustomColor);
-dialog.ShowDialog();
 
 
 ```

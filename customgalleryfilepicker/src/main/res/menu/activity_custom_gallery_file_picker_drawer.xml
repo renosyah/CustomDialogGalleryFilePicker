@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_image_file"
+            android:icon="@drawable/jpg_file"
+            android:title="Gambar" />
+
+        <item
+            android:id="@+id/nav_music_file"
+            android:icon="@drawable/music_file"
+            android:title="Musik" />
+
+        <item
+            android:id="@+id/nav_video_file"
+            android:icon="@drawable/video_file"
+            android:title="Video" />
+
+        <item
+            android:id="@+id/nav_document_file"
+            android:icon="@drawable/pdf_logo"
+            android:title="Dokumen" />
+        <item
+            android:id="@+id/nav_arsip_file"
+            android:icon="@drawable/zip_icon"
+            android:title="Zip" />
+
+        <item
+            android:id="@+id/nav_unknown_file"
+            android:icon="@drawable/unknown_file_type"
+            android:title="Lain-Lain" />
+
+    </group>
+
+</menu>
