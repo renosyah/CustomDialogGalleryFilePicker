@@ -29,6 +29,7 @@ import java.util.ArrayList;
 
 import static com.example.renosyahputra.customgalleryfilepicker.res.DialogRes.GetAllGalleryAudio;
 import static com.example.renosyahputra.customgalleryfilepicker.res.DialogRes.GetAllGalleryFile;
+import static com.example.renosyahputra.customgalleryfilepicker.res.DialogRes.GetAllGalleryImage;
 import static com.example.renosyahputra.customgalleryfilepicker.res.DialogRes.GetAllGalleryVideo;
 
 public class CustomActivityGalleryFilePicker extends AppCompatActivity
@@ -183,7 +184,7 @@ public class CustomActivityGalleryFilePicker extends AppCompatActivity
 
         if (id == R.id.nav_image_file) {
 
-            for (GalleryFileObj data : GetAllGalleryFile(context)){
+            for (GalleryFileObj data : GetAllGalleryImage(context)){
                 if (data.GetFileExtension().equals(GalleryFileObj.FormatJPG) || data.GetFileExtension().equals(GalleryFileObj.FormatPNG)){
                     fileDatas.add(data);
                 }

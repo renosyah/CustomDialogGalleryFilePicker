@@ -30,7 +30,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static com.example.renosyahputra.customgalleryfilepicker.res.DialogRes.GetAllGalleryFile;
+import static com.example.renosyahputra.customgalleryfilepicker.res.DialogRes.GetAllGalleryImage;
 import static com.example.renosyahputra.customgalleryfilepicker.res.DialogRes.RequestPermissionReadStorageIfNotGranted;
 import static com.example.renosyahputra.customgalleryfilepicker.res.DialogRes.SetEnglishLang;
 import static com.example.renosyahputra.customgalleryfilepicker.res.DialogRes.SetIndoLang;
@@ -76,7 +76,7 @@ public class CustomDialogGalleryFilePicker {
 
 
         fileDatas.clear();
-        for (GalleryFileObj data : GetAllGalleryFile(context)){
+        for (GalleryFileObj data : GetAllGalleryImage(context)){
             if (data.GetFileExtension().equals(GalleryFileObj.FormatJPG) || data.GetFileExtension().equals(GalleryFileObj.FormatPNG)){
                 fileDatas.add(data);
             }

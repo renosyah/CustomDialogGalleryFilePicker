@@ -65,8 +65,7 @@ public class DialogRes {
         lang.notGranted = "Not Allow";
         lang.granted = "Granted";
     }
-    
-    public static ArrayList<GalleryFileObj> GetAllGalleryFile(Context context){
+    public static ArrayList<GalleryFileObj> GetAllGalleryImage(Context context){
         ArrayList<GalleryFileObj> datas = new ArrayList<>();
 
         String[] columns = {"*"};
@@ -82,6 +81,27 @@ public class DialogRes {
 
         }
         phones.close();
+
+        return datas;
+    }
+    
+    public static ArrayList<GalleryFileObj> GetAllGalleryFile(Context context){
+        ArrayList<GalleryFileObj> datas = new ArrayList<>();
+
+        String[] columns = {"*"};
+
+        String orderBy = MediaStore.Files.FileColumns.DATE_ADDED+" DESC";
+        String select =  MediaStore.Files.FileColumns.MEDIA_TYPE + "="
+                + MediaStore.Files.FileColumns.MEDIA_TYPE_NONE;
+
+        Cursor phones = context.getContentResolver().query(MediaStore.Files.getContentUri("external"), columns, select, null, orderBy);
+        assert phones != null;
+        while (phones.moveToNext()) {
+            Uri path = Uri.parse(phones.getString(phones.getColumnIndex(MediaStore.Files.FileColumns.DATA)));
+            datas.add(new GalleryFileObj(new File(path.getPath()).getName(), path.getPath()));
+        }
+        phones.close();
+
 
         return datas;
     }
