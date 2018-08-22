@@ -51,6 +51,8 @@ hanya sebuah contoh sederhana mempublikasikan android library ke jitpack yang me
 ```
 
 CustomDialogGalleryFilePicker dialog = CustomDialogGalleryFilePicker(this);
+	dialog.SetFullScreenActivity(true);
+        dialog.SetIndonesian();
 	dialog.SetOnShowDialog(new ShowDialog.OnShowMyFileListener() {
             	@Override
             	public void OnChoosedFile(String filename, File file) {
