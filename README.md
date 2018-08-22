@@ -78,8 +78,14 @@ CustomDialogGalleryFilePicker dialog = CustomDialogGalleryFilePicker(this);
 
 ```
 
-	dialog.SetFullScreenActivity(true);
-        dialog.SetIndonesian();
+	dialog.SetFullScreenActivity(true); 
+	// apakah mau activity fullscreen atau tidak
+
+        dialog.SetIndonesian(); 
+	//mengubah seluruh kalimat menjadi bahasa indonesia
+
+ 	dialog.SetEnglish(); 
+	//mengubah seluruh kalimat menjadi bahasa inggris
 
 
 ```
@@ -90,9 +96,14 @@ CustomDialogGalleryFilePicker dialog = CustomDialogGalleryFilePicker(this);
 ```
 
 	int CustomColor = ResourcesCompat.getColor(this.getResources(), R.color.colorPrimaryDark,null);
-	dialog.SetTheme(CustomColor);
-	dialog.ShowPickupActivity();
+	// persiapkan warna yg ingin digunakan	
 
+	dialog.SetTheme(CustomColor);
+	// set kedalam dialog
+
+
+	dialog.ShowPickupActivity();
+	// tampilkan
 
 ```
 
@@ -100,9 +111,11 @@ CustomDialogGalleryFilePicker dialog = CustomDialogGalleryFilePicker(this);
 * dialog atau activity dapat dipilih sesuai kebutuhan : 
 ```
 
-	dialog.ShowDialog(); // untuk dialog namun hanya mengakses gambar
+	dialog.ShowDialog(); 
+	// untuk dialog namun hanya mengakses gambar
 
-	dialog.ShowPickupActivity();  // untuk activity dapat mengakses gambar,musik,video dan lainya
+	dialog.ShowPickupActivity();
+	 // untuk activity dapat mengakses gambar,musik,video dan lainya
 
 
 ```
