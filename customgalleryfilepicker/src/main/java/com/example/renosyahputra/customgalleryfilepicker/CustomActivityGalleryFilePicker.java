@@ -124,7 +124,7 @@ public class CustomActivityGalleryFilePicker extends AppCompatActivity
 
     private void DefaultSetting(){
         fileDatas.clear();
-        for (GalleryFileObj data : GetAllGalleryFile(context)){
+        for (GalleryFileObj data : GetAllGalleryImage(context)){
             if (data.GetFileExtension().equals(GalleryFileObj.FormatPNG) || data.GetFileExtension().equals(GalleryFileObj.FormatJPG)){
                 fileDatas.add(data);
             }
