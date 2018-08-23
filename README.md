@@ -48,7 +48,7 @@ hanya sebuah contoh sederhana mempublikasikan android library ke jitpack yang me
 
 	dependencies {
 		...
-		implementation 'com.github.renosyah:CustomDialogGalleryFilePicker:v1.6'
+		implementation 'com.github.renosyah:CustomDialogGalleryFilePicker:v1.6.1'
 	
 	}
 
