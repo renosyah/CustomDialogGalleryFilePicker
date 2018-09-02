@@ -28,6 +28,16 @@ hanya sebuah contoh sederhana mempublikasikan android library ke jitpack yang me
 ## Instalasi
 
 
+* jangan lupa tambahkan izin membaca file di AndroidManifest.xml
+
+```
+	...
+    	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	...
+
+```
+
+
 * tambahkan kedalam build.gradle : 
 
 ```
@@ -117,5 +127,14 @@ CustomDialogGalleryFilePicker dialog = CustomDialogGalleryFilePicker(this);
 	dialog.ShowPickupActivity();
 	 // untuk activity dapat mengakses gambar,musik,video dan lainya
 
+
+```
+
+
+untuk preview file imagenya saya menggunakan library milik square : Picasso
+
+```
+
+	https://github.com/square/picasso
 
 ```
