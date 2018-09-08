@@ -22,4 +22,13 @@
 
     <include layout="@layout/content_custom_activity_gallery_file_picker" />
 
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/CaptureFromCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@android:drawable/ic_menu_camera"
+        app:backgroundTint="@android:color/background_light" />
+
 </android.support.design.widget.CoordinatorLayout>

@@ -206,7 +206,7 @@ public class CustomDialogGalleryFilePicker {
 
         @Override
         public void onActivityResult(int requestCode, int resultCode, Intent data) {
-            if (requestCode == RequestCode && Activity.RESULT_OK == resultCode && showDialogListener != null){
+            if (requestCode == RequestCode && Activity.RESULT_OK == resultCode && showDialogListener != null && data != null){
                 GalleryFileObj obj = (GalleryFileObj) data.getSerializableExtra("data");
                 showDialogListener.OnChoosedFile(obj.GetFileName(),new File(obj.Path));
             }

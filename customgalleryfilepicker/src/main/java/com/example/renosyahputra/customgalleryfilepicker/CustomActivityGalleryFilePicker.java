@@ -3,7 +3,9 @@ package com.example.renosyahputra.customgalleryfilepicker;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -24,17 +26,21 @@ import android.widget.TextView;
 import com.example.renosyahputra.customgalleryfilepicker.res.adapter.CustomAdapterGalleryFile;
 import com.example.renosyahputra.customgalleryfilepicker.res.obj.GalleryFileObj;
 import com.example.renosyahputra.customgalleryfilepicker.res.obj.lang.ActivityGalleryFilePickerLang;
+import com.melnykov.fab.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Random;
 
 import static com.example.renosyahputra.customgalleryfilepicker.res.DialogRes.GetAllGalleryAudio;
 import static com.example.renosyahputra.customgalleryfilepicker.res.DialogRes.GetAllGalleryFile;
 import static com.example.renosyahputra.customgalleryfilepicker.res.DialogRes.GetAllGalleryImage;
 import static com.example.renosyahputra.customgalleryfilepicker.res.DialogRes.GetAllGalleryVideo;
+import static com.example.renosyahputra.customgalleryfilepicker.res.DialogRes.MakeNewFile;
 
 public class CustomActivityGalleryFilePicker extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,AdapterView.OnItemClickListener,SearchView.OnQueryTextListener
-        ,SwipeRefreshLayout.OnRefreshListener{
+        ,SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
 
     private Context context;
     private Intent intent;
@@ -60,6 +66,11 @@ public class CustomActivityGalleryFilePicker extends AppCompatActivity
 
     private ActivityGalleryFilePickerLang lang;
 
+    private Uri FileCaptureUri = null;
+    private FloatingActionButton CaptureFromCamera;
+    private int RequestCode = 0;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +82,12 @@ public class CustomActivityGalleryFilePicker extends AppCompatActivity
 
         context = this;
         intent = getIntent();
+
+        CaptureFromCamera = findViewById(R.id.CaptureFromCamera);
+        CaptureFromCamera.setOnClickListener(this);
+
+        Random rnd = new Random();
+        RequestCode = rnd.nextInt(1000) - 1;
 
         color = intent.getIntExtra("color",0);
         SetFullScreen = intent.getBooleanExtra("full",false);
@@ -113,10 +130,14 @@ public class CustomActivityGalleryFilePicker extends AppCompatActivity
 
         if (color != 0){
             DataKosongTextView.setTextColor(color);
+            CaptureFromCamera.setColorNormal(color);
+            CaptureFromCamera.setColorPressed(color);
         }
 
         refresMainGridview = findViewById(R.id.refresMainGridview);
         refresMainGridview.setOnRefreshListener(this);
+
+        CaptureFromCamera.attachToListView(GalleryFileGridview);
 
         DefaultSetting();
         SetSlideMenuLang();
@@ -182,6 +203,8 @@ public class CustomActivityGalleryFilePicker extends AppCompatActivity
         fileDatas.clear();
         fileDatas_Cari.clear();
 
+        CaptureFromCamera.setVisibility(View.GONE);
+
         if (id == R.id.nav_image_file) {
 
             for (GalleryFileObj data : GetAllGalleryImage(context)){
@@ -190,6 +213,7 @@ public class CustomActivityGalleryFilePicker extends AppCompatActivity
                 }
             }
             getSupportActionBar().setTitle(lang.title + " " +lang.titleSelectImage);
+            CaptureFromCamera.setVisibility(View.VISIBLE);
 
         } else if (id == R.id.nav_music_file){
 
@@ -336,5 +360,33 @@ public class CustomActivityGalleryFilePicker extends AppCompatActivity
         fileDatas_Cari.clear();
         SetAdapter(fileDatas);
         refresMainGridview.setRefreshing(!refresMainGridview.isRefreshing());
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == CaptureFromCamera){
+            FileCaptureUri = Uri.fromFile(MakeNewFile());
+            Intent i = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+            i.putExtra(MediaStore.EXTRA_OUTPUT, FileCaptureUri);
+            setResult(Activity.RESULT_OK);
+            startActivityForResult(i, RequestCode);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == RequestCode && resultCode == Activity.RESULT_OK){
+
+            Calendar cal = Calendar.getInstance();
+
+            GalleryFileObj galleryFileObj = new GalleryFileObj((cal.getTimeInMillis()+".jpg"), FileCaptureUri.getPath());
+            Intent returnIntent = new Intent();
+            returnIntent.putExtra("data",galleryFileObj);
+            setResult(Activity.RESULT_OK,returnIntent);
+            finish();
+        }
+
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -16,9 +17,32 @@ import com.example.renosyahputra.customgalleryfilepicker.res.obj.GalleryFileObj;
 import com.example.renosyahputra.customgalleryfilepicker.res.obj.lang.ActivityGalleryFilePickerLang;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class DialogRes {
+
+    public static File MakeNewFile() {
+        Calendar cal = Calendar.getInstance();
+        File file = new File(Environment.getExternalStorageDirectory(),  (cal.getTimeInMillis()+".jpg"));
+        if(!file.exists()){
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+
+                e.printStackTrace();
+            }
+        }else{
+            file.delete();
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return file;
+    }
     
     public static void SetIndoLang(ActivityGalleryFilePickerLang lang){
         lang.title = "Pilih";
